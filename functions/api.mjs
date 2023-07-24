@@ -1,21 +1,16 @@
 import express from "express";
 import serverless from "serverless-http";
+import path from "path"
 
 const app = express()
+const __dirname = path.resolve()
 
 app.get("/", (req, res)=>{
     res.send("Welcome to my API server")
 })
 
 app.get("/about", (req,res)=>{
-    res.json({
-        "name": "Jamol",
-        "hobby": {
-            "1": "Playing the Piano",
-            "2": "Fast Typing",
-            "3": "Drawing"
-        }
-    })
+    res.sendFile(__dirname + "../dist/index.html")
 })
 
 app.listen(3000, (err)=>{
